@@ -1,0 +1,48 @@
+// APpar - Action Potential Parameters Analyzer
+// Developed in 2026 by Dmytro Vasylyev
+// Yale University
+
+// Copyright (c) 2026 Dmytro Vasylyev.
+// All rights reserved.
+// 
+// Distribution, licensing, and commercialization rights may be subject to
+// institutional review and approval requirements.
+//
+// Contact:
+// dmytro.vasylyev@yale.edu
+// APpar.py
+
+// Wrapper to run APpar.py from Origin with the same settings dialog style.
+
+// Attn: replace dv93 with your username to update Python script location on your PC:
+string pyFile$ = "C:\\Users\\dv93\\Documents\\OriginLab\\User Files\\APpar.py";
+
+int AP_NTRACES = 1;
+double AP_RMP_START = 0.004;
+double AP_RMP_END = 0.009;
+double AP_T_START = 0.01;
+double AP_T_END = col(A)[wks.maxRows];
+double AP_DVDT_CRIT = 8;
+int AP_DVDT_SMOOTH_POINTS = 6;
+double AP_MIN_OVERSHOOT = 0;
+double AP_MIN_AP_DURATION = 0.001;
+double AP_MIN_ISI = 0.01;
+double AP_MIN_DVDT_THRESHOLD_DURATION = 0.0002;
+double AP_WRITE_PAUSE_SEC = 0.025;
+
+getn (Number_of_Traces) AP_NTRACES
+     (RMP_Start_Time) AP_RMP_START
+     (RMP_End_Time) AP_RMP_END
+     (AP_Start_Time) AP_T_START
+     (AP_End_Time) AP_T_END
+     (dVdt_Threshold_V_per_s) AP_DVDT_CRIT
+     (dVdt_Filter_Number_of_Points) AP_DVDT_SMOOTH_POINTS
+     (Minimal_AP_Overshoot) AP_MIN_OVERSHOOT
+     (Minimal_AP_Duration) AP_MIN_AP_DURATION
+     (Minimal_Inter_AP_Interval) AP_MIN_ISI
+     (Minimum_dVdt_Threshold_Duration) AP_MIN_DVDT_THRESHOLD_DURATION
+     (Data_Writing_Pause) AP_WRITE_PAUSE_SEC
+     "AP Parameter Settings";
+
+// Quoted path is required because "User Files" contains a space.
+run -pyf "%(pyFile$)";
